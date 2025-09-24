@@ -8,6 +8,7 @@ import {
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,7 +46,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${notoKufi.variable} ${IBMPLEX.variable} antialiased`}
       >
         <Nav />
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
         <Footer />
       </body>
     </html>

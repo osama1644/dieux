@@ -1,7 +1,7 @@
 import React from "react";
 import SectionHeader from "./SectionHeader";
 import img1 from "@/assets/blogImg.png"
-import img2 from "@/assets/Clock Circle.png"
+import img2 from "@/assets/ClockCircle.png"
 import Image from "next/image";
 import { Button } from "./ui/button";
 function Blogs() {

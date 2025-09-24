@@ -44,7 +44,7 @@ export function ProfileForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-[16px] pb-[80px]"
+        className="flex flex-col gap-[16px] "
       >
         <div className="grid md:grid-cols-2 gap-[15px] items-center">
           <div className=" relative">
@@ -126,8 +126,8 @@ export function ProfileForm() {
          </div>
 
         <div dir="rtl" className=" flex flex-col md:flex-row  gap-[20px]">
-          <Button type="submit" className="bg-[#283A90] text-white w-full md:w-[280px]">تواصل معنا</Button>
-          <Button variant="outline" className="  text-[#35356A] w-full md:w-[180px]">الغاء</Button>
+          <Button type="submit" className="bg-[#283A90] text-white w-ful md:w-[180px] lg:w-[250px]">تواصل معنا</Button>
+          <Button variant="outline" className="  text-[#35356A] w-full md:w-[120px] lg:w-[150px]">الغاء</Button>
         </div>
       </form>
     </Form>
