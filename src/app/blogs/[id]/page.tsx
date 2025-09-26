@@ -1,17 +1,41 @@
+"use client";
 import React from "react";
 import ProductInfo from "../ProductInfo";
-import img1 from "@/assets/blogImg.png"
+import img1 from "@/assets/blogImg.png";
 import Image from "next/image";
 import TermsBody from "@/app/terms-of-service/TermsBody";
-function page() {
+import { notFound, useParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { getOneBlog } from "@/api/api";
+import { OneBlog } from "@/types";
+function Page() {
+  const params = useParams<{ id: string }>();
+  const id = params.id;
+  const {data,isLoading,isError} = useQuery<OneBlog>({
+    queryKey: ["one blog"],
+    queryFn: () => getOneBlog(id),
+  });
+  if(data){
+    console.log(data)
+  }
+   if (isError || (!isLoading && !data?.data)) {
+      notFound();
+    }
   return (
     <div className="container-apply">
       <div className="grid lg:grid-cols-8 gap-[20px]">
         <div className="lg:col-span-3  ">
-          <ProductInfo />
+          <ProductInfo tags={data?.data.tags || []} />
         </div>
         <div className="lg:col-span-5 grid gap-[50px]">
-          <Image src={img1} alt="product img" width={400} height={200} className="w-full h-full" />
+          <Image
+            src={data?.data.image || img1}
+            alt="product img"
+            width={400}
+            height={200}
+            className="w-full h-full"
+          />
+          
           <TermsBody />
         </div>
       </div>
@@ -19,4 +43,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

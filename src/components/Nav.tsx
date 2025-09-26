@@ -15,7 +15,6 @@ function Nav() {
   const navLinks = [
     { href: "/", label: "الرئيسية" },
     { href: "/about", label: "من نحن" },
-    { href: "/boxes", label: "البوكسات" },
     { href: "/products", label: "المنتجات" },
     { href: "/blogs", label: "مقالات" },
   ];

@@ -3,8 +3,13 @@ import React, {  useState } from "react";
 import OneProdDetails from "./OneProdDetails";
 import OneProdDescription from "./OneProdDescription";
 import OneProdFiles from "./OneProdFiles";
-
-function ProductDetails() {
+import { ProductDetail } from "@/types";
+interface OneProdDetailsProps {
+  details: ProductDetail[];
+  description:string
+}
+function ProductDetails({details,description}:OneProdDetailsProps) {
+  console.log(description)
   const links = [
     { link: "details", lable: "تفاصيل المنتج" },
     { link: "description", lable: "وصف المنتج" },
@@ -31,8 +36,8 @@ function ProductDetails() {
         <div className="border p-[30px] rounded-[20px]">
           {
             {
-              details: <OneProdDetails />,
-              description: <OneProdDescription />,
+              details: <OneProdDetails details={details} />,
+              description: <OneProdDescription description={description} />,
               files: <OneProdFiles />,
             }[tab]
           }

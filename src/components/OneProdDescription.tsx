@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import img1 from "@/assets/description.png";
-function OneProdDescription() {
+function OneProdDescription({description}:{description:string}) {
   return (
     <div>
       <header className="flex items-center gap-[20px] mb-[20px]">

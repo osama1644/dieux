@@ -9,6 +9,9 @@ import img1 from "@/assets/homeProductImage.png";
 import img2 from "@/assets/ClockCircle.png";
 import { Button } from "@/components/ui/button";
 import PaginationComp from "@/components/PaginationComp";
+import { useQuery } from "@tanstack/react-query";
+import { getAllBlogs } from "@/api/api";
+import { Blogs } from "@/types";
 const links = [
   { label: "مسحوق", href: "/blogs" },
   { label: "غسيل", href: "/blogs" },
@@ -17,6 +20,13 @@ const links = [
 ];
 
 function Page() {
+  const {data,isError,isLoading} =useQuery<Blogs>({
+    queryKey:["blogs"],
+    queryFn:getAllBlogs
+  })
+  if(data){
+    console.log(data)
+  }
   const [currCategory, setCurrCategory] = useState(3);
   return (
     <div className="container-apply mb-[30px]">
@@ -50,12 +60,15 @@ function Page() {
         ))}
       </div>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[30px]">
-        <div
+        {
+          data?.data.map(blog=>(
+            <div
+            key={blog.id}
           className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
           dir="rtl"
         >
           <Image
-            src={img1}
+            src={blog.image }
             alt="blog img"
             width={300}
             height={300}
@@ -63,299 +76,33 @@ function Page() {
           />
           <div className="flex gap-2 items-center">
             <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">منذ 3 شهور </p>
+            <p className="text-[#999EB2]">{blog.time_ago}</p>
           </div>
           <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px]">
-              الحل الأمثل لجميع احتياجات الغسيل
+            <p className="text-[#35356A] text-[20px] min-h-[60px] flex items-center ">
+              {blog.title}
             </p>
             <p className="text-[#999EB2] text-[18px]">
-              نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال
-              أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.
+              
+                {blog.description.replace(/<[^>]+>/g, "").trim()}
+              
             </p>
           </div>
           <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            <p>غسيل</p>
-            <p>مسحوق</p>
-            <p>تنشيف</p>
-            <p>+2</p>
+            {
+              blog.tags.map(tag=>(
+                <p key={tag}>{tag}</p>
+              ))
+            }
+ 
           </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
-            عرض تفاصيل اكثر
+          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer mt-auto ">
+            <Link href={`/blogs/${blog.id}`}>عرض تفاصيل اكثر</Link>
           </Button>
         </div>
-        <div
-          className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
-          dir="rtl"
-        >
-          <Image
-            src={img1}
-            alt="blog img"
-            width={300}
-            height={300}
-            className="w-full h-[290px]"
-          />
-          <div className="flex gap-2 items-center">
-            <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">منذ 3 شهور </p>
-          </div>
-          <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px]">
-              الحل الأمثل لجميع احتياجات الغسيل
-            </p>
-            <p className="text-[#999EB2] text-[18px]">
-              نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال
-              أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.
-            </p>
-          </div>
-          <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            <p>غسيل</p>
-            <p>مسحوق</p>
-            <p>تنشيف</p>
-            <p>+2</p>
-          </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
-            عرض تفاصيل اكثر
-          </Button>
-        </div>
-        <div
-          className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
-          dir="rtl"
-        >
-          <Image
-            src={img1}
-            alt="blog img"
-            width={300}
-            height={300}
-            className="w-full h-[290px]"
-          />
-          <div className="flex gap-2 items-center">
-            <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">منذ 3 شهور </p>
-          </div>
-          <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px]">
-              الحل الأمثل لجميع احتياجات الغسيل
-            </p>
-            <p className="text-[#999EB2] text-[18px]">
-              نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال
-              أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.
-            </p>
-          </div>
-          <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            <p>غسيل</p>
-            <p>مسحوق</p>
-            <p>تنشيف</p>
-            <p>+2</p>
-          </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
-            عرض تفاصيل اكثر
-          </Button>
-        </div>
-        <div
-          className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
-          dir="rtl"
-        >
-          <Image
-            src={img1}
-            alt="blog img"
-            width={300}
-            height={300}
-            className="w-full h-[290px]"
-          />
-          <div className="flex gap-2 items-center">
-            <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">منذ 3 شهور </p>
-          </div>
-          <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px]">
-              الحل الأمثل لجميع احتياجات الغسيل
-            </p>
-            <p className="text-[#999EB2] text-[18px]">
-              نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال
-              أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.
-            </p>
-          </div>
-          <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            <p>غسيل</p>
-            <p>مسحوق</p>
-            <p>تنشيف</p>
-            <p>+2</p>
-          </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
-            عرض تفاصيل اكثر
-          </Button>
-        </div>
-        <div
-          className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
-          dir="rtl"
-        >
-          <Image
-            src={img1}
-            alt="blog img"
-            width={300}
-            height={300}
-            className="w-full h-[290px]"
-          />
-          <div className="flex gap-2 items-center">
-            <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">منذ 3 شهور </p>
-          </div>
-          <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px]">
-              الحل الأمثل لجميع احتياجات الغسيل
-            </p>
-            <p className="text-[#999EB2] text-[18px]">
-              نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال
-              أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.
-            </p>
-          </div>
-          <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            <p>غسيل</p>
-            <p>مسحوق</p>
-            <p>تنشيف</p>
-            <p>+2</p>
-          </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
-            عرض تفاصيل اكثر
-          </Button>
-        </div>
-        <div
-          className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
-          dir="rtl"
-        >
-          <Image
-            src={img1}
-            alt="blog img"
-            width={300}
-            height={300}
-            className="w-full h-[290px]"
-          />
-          <div className="flex gap-2 items-center">
-            <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">منذ 3 شهور </p>
-          </div>
-          <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px]">
-              الحل الأمثل لجميع احتياجات الغسيل
-            </p>
-            <p className="text-[#999EB2] text-[18px]">
-              نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال
-              أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.
-            </p>
-          </div>
-          <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            <p>غسيل</p>
-            <p>مسحوق</p>
-            <p>تنشيف</p>
-            <p>+2</p>
-          </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
-            عرض تفاصيل اكثر
-          </Button>
-        </div>
-        <div
-          className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
-          dir="rtl"
-        >
-          <Image
-            src={img1}
-            alt="blog img"
-            width={300}
-            height={300}
-            className="w-full h-[290px]"
-          />
-          <div className="flex gap-2 items-center">
-            <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">منذ 3 شهور </p>
-          </div>
-          <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px]">
-              الحل الأمثل لجميع احتياجات الغسيل
-            </p>
-            <p className="text-[#999EB2] text-[18px]">
-              نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال
-              أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.
-            </p>
-          </div>
-          <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            <p>غسيل</p>
-            <p>مسحوق</p>
-            <p>تنشيف</p>
-            <p>+2</p>
-          </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
-            عرض تفاصيل اكثر
-          </Button>
-        </div>
-        <div
-          className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
-          dir="rtl"
-        >
-          <Image
-            src={img1}
-            alt="blog img"
-            width={300}
-            height={300}
-            className="w-full h-[290px]"
-          />
-          <div className="flex gap-2 items-center">
-            <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">منذ 3 شهور </p>
-          </div>
-          <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px]">
-              الحل الأمثل لجميع احتياجات الغسيل
-            </p>
-            <p className="text-[#999EB2] text-[18px]">
-              نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال
-              أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.
-            </p>
-          </div>
-          <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            <p>غسيل</p>
-            <p>مسحوق</p>
-            <p>تنشيف</p>
-            <p>+2</p>
-          </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
-            عرض تفاصيل اكثر
-          </Button>
-        </div>
-        <div
-          className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
-          dir="rtl"
-        >
-          <Image
-            src={img1}
-            alt="blog img"
-            width={300}
-            height={300}
-            className="w-full h-[290px]"
-          />
-          <div className="flex gap-2 items-center">
-            <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">منذ 3 شهور </p>
-          </div>
-          <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px]">
-              الحل الأمثل لجميع احتياجات الغسيل
-            </p>
-            <p className="text-[#999EB2] text-[18px]">
-              نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال
-              أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.
-            </p>
-          </div>
-          <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            <p>غسيل</p>
-            <p>مسحوق</p>
-            <p>تنشيف</p>
-            <p>+2</p>
-          </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
-            عرض تفاصيل اكثر
-          </Button>
-        </div>
+          ))
+        }
+
       </div>
       <PaginationComp />
     </div>

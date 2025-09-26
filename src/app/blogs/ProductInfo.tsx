@@ -4,8 +4,11 @@ import { FaCheckCircle } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaLink } from "react-icons/fa";
-
-function ProductInfo() {
+interface Tags {
+  tags?:string[]
+}
+function ProductInfo({tags}:Tags) {
+  console.log(tags)
   return (
     <div className="grid gap-[18px] rounded-[20px] border p-[20px]">
       <div className="p-[20px] rounded-[20px] border text-[#999EB2]">
@@ -14,16 +17,13 @@ function ProductInfo() {
           <GoFileDirectory className="w-[20px] h-[20px]" />
         </div>
         <div className="flex flex-wrap *:basis-[70px] *:grow gap-[10px] *:flex *:justify-center *:items-center">
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
-          <p className="p-[7px_12px] rounded-[10px] border">غسيل</p>
+          {
+            tags?.map(tag=>(
+              
+              <p key={tag} className="p-[7px_12px] rounded-[10px] border">{tag}</p>
+            ))
+          }
+
         </div>
       </div>
       <div className="bg-[#F9F9FC] p-[10px] rounded-[10px]">
