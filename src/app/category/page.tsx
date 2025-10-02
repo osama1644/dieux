@@ -1,26 +1,21 @@
-"use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import { Button } from "./ui/button";
+"use client"
+import SectionHeader from '@/components/SectionHeader'
+import { Button } from '@/components/ui/button'
+import { useBoxes } from '@/lib/hooks'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
-import { useBoxes } from "@/lib/hooks";
-import Link from "next/link";
-function HomePageProducts() {
-  const [numberOfCategories, setNumberOfCategories] = useState<number>(3);
-  const { data, error, isLoading, isError } = useBoxes()
-
-  console.log(data);
+function Page() {
+    const { data, error, isLoading, isError } = useBoxes()
+  
   return (
-    <div className="mt-[100px] py-5 mb-[65px]">
-      <div className="flex flex-col items-center gap-5 mb-[60px]">
-        <h2 className="text-[48px] text-[#35356A] text-center">
-          بوكسات ديوكسا
-        </h2>
-        <p className="text-[20px] text-[#999EB2] font-normal text-center">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, ullam!
-        </p>
-      </div>
-      {isLoading && (
+    <div className='container-apply'>
+       <SectionHeader
+        title="بوكسات ديوكسا"
+        subtitle="استعدي لإضافة لمسة ساحرة الى بيتك ف لا مكان مثل البيت"
+      />
+            {isLoading && (
         <div className="text-center">
           <p className="text-[#35356A] font-medium text-[30px]">
             loading products ....{" "}
@@ -33,7 +28,7 @@ function HomePageProducts() {
         </div>
       )}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[20px]  mx-auto px-4 lg:w-auto lg:max-w-[1430px] w-[400px] md:w-auto md:max-w-[900px] mb-[50px]">
-        {data?.data.slice(0, numberOfCategories).map((cat) => (
+        {data?.data?.map((cat) => (
           <div
             key={cat.id}
             className="rounded-[16px] overflow-hidden relative shadow-2xl"
@@ -54,7 +49,8 @@ function HomePageProducts() {
                   {cat.description}
                 </p>
                 <Button className="bg-[#283A90] hover:bg-[#283990ca] !cursor-pointer w-full">
-                  <Link href={`/category/${cat.id}`}>عرض المنتجات الموجوده</Link></Button>
+                   <Link href={`/category/${cat.id}`}>عرض المنتجات الموجوده</Link></Button>
+       
               </div>
             </div>
             <div
@@ -66,13 +62,8 @@ function HomePageProducts() {
           </div>
         ))}
       </div>
-      <Button
-        className="!py-[19px] h-auto px-6 bg-[white] text-[#283A90] border-1 border-[#283A90] mx-auto block hover:bg-[#e6dadaec] cursor-pointer mb-[30px]"
-      >
-        <Link href={`/category`}>عرض المزيد</Link>
-      </Button>
     </div>
-  );
+  )
 }
 
-export default HomePageProducts;
+export default Page

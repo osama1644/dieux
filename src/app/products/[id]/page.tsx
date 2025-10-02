@@ -11,20 +11,15 @@ import img4 from "@/assets/heroImg.jpg";
 import cup from "@/assets/CupFirst.png";
 import ProductDetails from "@/components/ProductDetails";
 import RelatedProducts from "@/components/RelatedProducts";
-import { useQuery } from "@tanstack/react-query";
-import { getOneProduct } from "@/api/api";
 import { notFound, useParams } from "next/navigation";
-import { OneProduct } from "@/types";
+import { useOneProduct } from "@/lib/hooks";
 
 function Page() {
   const [mainImage, setMainImg] = useState(img3);
   const params = useParams<{ id: string }>();
   const id = params.id;
 
-  const { data, isLoading, isError } = useQuery<OneProduct>({
-    queryKey: ["oneproduct"],
-    queryFn: () => getOneProduct(id),
-  });
+  const { data, isLoading, isError } =useOneProduct(id)
    if (isError || (!isLoading && !data?.data)) {
     notFound();
   }

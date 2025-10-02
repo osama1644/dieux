@@ -5,22 +5,18 @@ import img1 from "@/assets/blogImg.png";
 import Image from "next/image";
 import TermsBody from "@/app/terms-of-service/TermsBody";
 import { notFound, useParams } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
-import { getOneBlog } from "@/api/api";
-import { OneBlog } from "@/types";
+
+import { useOneBlog } from "@/lib/hooks";
 function Page() {
   const params = useParams<{ id: string }>();
   const id = params.id;
-  const {data,isLoading,isError} = useQuery<OneBlog>({
-    queryKey: ["one blog"],
-    queryFn: () => getOneBlog(id),
-  });
-  if(data){
-    console.log(data)
+  const { data, isLoading, isError } = useOneBlog(id);
+  if (data) {
+    console.log(data);
   }
-   if (isError || (!isLoading && !data?.data)) {
-      notFound();
-    }
+  if (isError || (!isLoading && !data?.data)) {
+    notFound();
+  }
   return (
     <div className="container-apply">
       <div className="grid lg:grid-cols-8 gap-[20px]">
@@ -35,7 +31,7 @@ function Page() {
             height={200}
             className="w-full h-full"
           />
-          
+
           <TermsBody />
         </div>
       </div>

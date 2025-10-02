@@ -3,31 +3,45 @@ import SectionHeader from "@/components/SectionHeader";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import img1 from "@/assets/homeProductImage.png";
 import img2 from "@/assets/ClockCircle.png";
 import { Button } from "@/components/ui/button";
 import PaginationComp from "@/components/PaginationComp";
-import { useQuery } from "@tanstack/react-query";
-import { getAllBlogs } from "@/api/api";
-import { Blogs } from "@/types";
+
+import { useBlogs } from "@/lib/hooks";
 const links = [
-  { label: "مسحوق", href: "/blogs" },
-  { label: "غسيل", href: "/blogs" },
-  { label: "منظفات", href: "/blogs" },
-  { label: "الكل", href: "/blogs" },
+  { label: "مسحوق", value: "powder" },
+  { label: "غسيل", value: "wash" },
+  { label: "منظفات", value: "clean" },
+  { label: "الكل", value: "all" },
 ];
 
 function Page() {
-  const {data,isError,isLoading} =useQuery<Blogs>({
-    queryKey:["blogs"],
-    queryFn:getAllBlogs
-  })
-  if(data){
-    console.log(data)
+  const { data, isError, isLoading } = useBlogs()
+  if (data) {
+    console.log(data);
   }
-  const [currCategory, setCurrCategory] = useState(3);
+  const [currCategory, setCurrCategory] = useState("all");
+  
+    const filteredProducts = useMemo(() => {
+      if (!data?.data) return [];
+  
+      switch (currCategory) {
+        case "all":
+        case "most": 
+          return data.data;
+        case "wash":
+          return data.data.length > 0 ? [data.data[0]] : [];
+        case "clean":
+          return data.data.length > 0 ? [data.data[1]] : [];
+        case "powder":
+          return data.data.length > 0 ? [data.data[2]] : [];
+        default:
+          return data.data;
+      }
+    }, [data, currCategory]);
   return (
     <div className="container-apply mb-[30px]">
       <SectionHeader
@@ -45,64 +59,55 @@ function Page() {
       </div>
       <div className="flex justify-center items-center *:p-[10px] *:text-center *:text-[12px] *:lg:p-[12px_30px] *:rounded-[15px]  *:lg:rounded-[30px] gap-[5px] lg:gap-[13px] mb-[25px]">
         {links.map((link, i) => (
-          <Link
+          <button
             key={i}
-            href={link.href}
             className={`${
-              currCategory === i
+              currCategory === link.value
                 ? "bg-[#35356A] text-white"
                 : "bg-[#F5F5F7] text-[#35356A]"
             }`}
-            onClick={() => setCurrCategory(i)}
+            onClick={() => setCurrCategory(link.value)}
           >
             {link.label}
-          </Link>
+          </button>
         ))}
       </div>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[30px]">
-        {
-          data?.data.map(blog=>(
-            <div
+        {filteredProducts.map((blog) => (
+          <div
             key={blog.id}
-          className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
-          dir="rtl"
-        >
-          <Image
-            src={blog.image }
-            alt="blog img"
-            width={300}
-            height={300}
-            className="w-full h-[290px]"
-          />
-          <div className="flex gap-2 items-center">
-            <Image src={img2} alt="clock logo" width={25} height={25} />
-            <p className="text-[#999EB2]">{blog.time_ago}</p>
-          </div>
-          <div className="spac-y-[12px]">
-            <p className="text-[#35356A] text-[20px] min-h-[60px] flex items-center ">
-              {blog.title}
-            </p>
-            <p className="text-[#999EB2] text-[18px]">
-              
+            className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
+            dir="rtl"
+          >
+            <Image
+              src={blog.image}
+              alt="blog img"
+              width={300}
+              height={300}
+              className="w-full h-[290px]"
+            />
+            <div className="flex gap-2 items-center">
+              <Image src={img2} alt="clock logo" width={25} height={25} />
+              <p className="text-[#999EB2]">{blog.time_ago}</p>
+            </div>
+            <div className="spac-y-[12px]">
+              <p className="text-[#35356A] text-[20px] min-h-[60px] flex items-center ">
+                {blog.title}
+              </p>
+              <p className="text-[#999EB2] text-[18px]">
                 {blog.description.replace(/<[^>]+>/g, "").trim()}
-              
-            </p>
-          </div>
-          <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-            {
-              blog.tags.map(tag=>(
+              </p>
+            </div>
+            <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
+              {blog.tags.map((tag) => (
                 <p key={tag}>{tag}</p>
-              ))
-            }
- 
+              ))}
+            </div>
+            <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer mt-auto ">
+              <Link href={`/blogs/${blog.id}`}>عرض تفاصيل اكثر</Link>
+            </Button>
           </div>
-          <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer mt-auto ">
-            <Link href={`/blogs/${blog.id}`}>عرض تفاصيل اكثر</Link>
-          </Button>
-        </div>
-          ))
-        }
-
+        ))}
       </div>
       <PaginationComp />
     </div>

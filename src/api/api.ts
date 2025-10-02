@@ -1,25 +1,54 @@
+import axios from "axios";
+
 export async function getBoxes() {
-  const res = await fetch("https://api.dieuxeg.com/api/categories");
-  if (!res.ok) throw new Error("Failed to fetch categories");
-  return res.json();
+  try {
+    const res = await axios.get("https://api.dieuxeg.com/api/categories/with-count");
+    return res.data;
+  } catch {
+    throw new Error("Failed to fetch categories");
+  }
 }
+
 export async function getProducts() {
-  const res = await fetch("https://api.dieuxeg.com/api/products");
-  if (!res.ok) throw new Error("Failed to fetch categories");
-  return res.json();
+  try {
+    const res = await axios.get("https://api.dieuxeg.com/api/products");
+    return res.data;
+  } catch {
+    throw new Error("Failed to fetch products");
+  }
 }
+
 export async function getOneProduct(id: string) {
-  const res = await fetch(`https://api.dieuxeg.com/api/products/${id}`);
-  if (!res.ok) throw new Error("Failed to fetch product");
-  return res.json();
+  try {
+    const res = await axios.get(`https://api.dieuxeg.com/api/products/${id}`);
+    return res.data;
+  } catch {
+    throw new Error("Failed to fetch product");
+  }
 }
+
 export async function getAllBlogs() {
-  const res = await fetch(`https://api.dieuxeg.com/api/blogs`);
-  if (!res.ok) throw new Error("Failed to fetch product");
-  return res.json();
+  try {
+    const res = await axios.get("https://api.dieuxeg.com/api/blogs");
+    return res.data;
+  } catch {
+    throw new Error("Failed to fetch blogs");
+  }
 }
+
 export async function getOneBlog(id: string) {
-  const res = await fetch(`https://api.dieuxeg.com/api/blogs/${id}`);
-  if (!res.ok) throw new Error("Failed to get the blog");
-  return res.json();
+  try {
+    const res = await axios.get(`https://api.dieuxeg.com/api/blogs/${id}`);
+    return res.data;
+  } catch {
+    throw new Error("Failed to get the blog");
+  }
+}
+export async function getProductsByCategory(id: string) {
+  try {
+    const res = await axios.get(`https://api.dieuxeg.com/api/categories/${id}/products`);
+    return res.data;
+  } catch {
+    throw new Error("Failed to get the blog");
+  }
 }

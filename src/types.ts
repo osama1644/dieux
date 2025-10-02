@@ -12,6 +12,7 @@ export interface Category {
   name: string;
   description: string;
   image: string;
+   product_count: number;
 }
 export interface Pagination {
   has_next: boolean;
@@ -26,6 +27,7 @@ export interface CategoriesResponse {
   data: Category[];
   pagination: Pagination;
   success: boolean;
+ 
 }
 /////// end of categories
 
