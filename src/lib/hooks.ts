@@ -8,8 +8,9 @@ import {
   getAllBlogs,
   getOneBlog,
   getProductsByCategory,
+  searchAll,
 } from "@/api/api";
-import { Blogs, CategoriesResponse, OneBlog, OneProduct, ProductsResponse } from "@/types";
+import { Blogs, CategoriesResponse, OneBlog, OneProduct, ProductsResponse, SearchQuery } from "@/types";
 
 export const useBoxes = () => {
   return useQuery<CategoriesResponse>({
@@ -49,5 +50,11 @@ export const useGetProductByCategory = (id: string) => {
   return useQuery<ProductsResponse>({
     queryKey: ["blog", id],
     queryFn: () => getProductsByCategory(id),
+  });
+};
+export const useSearch = (query: string) => {
+  return useQuery<SearchQuery>({
+    queryKey: ["product", query],
+    queryFn: () => searchAll(query),
   });
 };

@@ -104,3 +104,23 @@ export interface OneBlog {
 
   success: boolean;
 }
+export interface SearchedBlog {
+  id: string;
+  image: string;
+  time_ago: string;
+  title: string;
+  type: string;
+}
+export interface SearchedProd {
+  id: string;
+  main_image: string;
+  price: string;
+  rate: number;
+  subTitle: string;
+  title: string;
+  type: "product";
+}
+export interface SearchQuery {
+  blogs:SearchedBlog[],
+  products:SearchedProd[]
+}

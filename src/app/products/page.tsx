@@ -8,12 +8,13 @@ import img2 from "@/assets/ClockCircle.png";
 import { CiSearch } from "react-icons/ci";
 import { Button } from "@/components/ui/button";
 import PaginationComp from "@/components/PaginationComp";
-import { useProducts } from "@/lib/hooks";
+import { useProducts, useSearch } from "@/lib/hooks";
 
 //time convertion
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ar";
+import { searchAll } from "@/api/api";
 dayjs.extend(relativeTime);
 dayjs.locale("ar");
 function formatRelativeTime(isoDate: string) {
@@ -28,10 +29,25 @@ const links = [
   { label: "عنايه بالبشره", value: "care" },
   { label: "منتجات طبيعيه", value: "natural" },
 ];
+// export async function searchAll(query: string) {
+//   try {
+//     const res = await axios.get(`https://api.dieuxeg.com/api/search`, {
+//       params: { q: query }, 
+//     });
+//     return res.data;
+//   } catch {
+//     throw new Error("Failed to search");
+//   }
+// }
 
 function Boxes() {
   const { data, isLoading, isError } = useProducts();
   const [currCategory, setCurrCategory] = useState("all");
+  const [query,setQuery] =useState("")
+  const thedata =useSearch(query)
+  if(thedata.data){
+    console.log(thedata.data)
+  }
 
   const filteredProducts = useMemo(() => {
     if (!data?.data) return [];
@@ -49,6 +65,16 @@ function Boxes() {
     }
   }, [data, currCategory]);
 
+  // بعد ال states
+const items = useMemo(() => {
+  if (thedata.data) {
+    // لو جاي من search api
+    return thedata.data.products || [];
+  }
+  // fallback للفلترة القديمة
+  return filteredProducts;
+}, [thedata, filteredProducts]);
+
   return (
     <div className="container-apply">
       <SectionHeader
@@ -64,6 +90,7 @@ function Boxes() {
           className="bg-[#F9F9FC] px-6 placeholder:text-[#999EB2]"
           placeholder="بحث عن"
           dir="rtl"
+          onChange={(e)=>setQuery(e.target.value)}
         />
       </div>
 
@@ -100,7 +127,7 @@ function Boxes() {
           </div>
         )}
 
-        {filteredProducts.map((prod) => (
+        {items.map((prod) => (
           <div
             key={prod.id}
             className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
@@ -116,7 +143,6 @@ function Boxes() {
             <div className="flex gap-2 items-center">
               <Image src={img2} alt="clock logo" width={25} height={25} />
               <p className="text-[#999EB2]">
-                {formatRelativeTime(prod.created_at)}
               </p>
             </div>
             <div className="spac-y-[12px]">
@@ -124,14 +150,7 @@ function Boxes() {
               <p className="text-[#999EB2] text-[18px]">{prod.title}</p>
             </div>
             <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
-              {prod.attributes.slice(0, 3).map((attr) => (
-                <p key={attr}>{attr}</p>
-              ))}
-              {prod.attributes.length > 3 && (
-                <p className="text-[#35356A] bg-[#F5F5F7] rounded-[10px] p-[5px_10px]">
-                  +{prod.attributes.slice(3).length}
-                </p>
-              )}
+              
             </div>
             <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
               <Link href={`/products/${prod.id}`}>عرض تفاصيل اكثر</Link>

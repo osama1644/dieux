@@ -52,3 +52,15 @@ export async function getProductsByCategory(id: string) {
     throw new Error("Failed to get the blog");
   }
 }
+
+export async function searchAll(query: string) {
+  try {
+    const res = await axios.get(`https://api.dieuxeg.com/api/search`, {
+      params: { q: query }, 
+    });
+    return res.data;
+  } catch {
+    throw new Error("Failed to search");
+  }
+}
+
