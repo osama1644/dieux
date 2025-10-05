@@ -23,17 +23,22 @@ function Page() {
         <div className="lg:col-span-3  ">
           <ProductInfo tags={data?.data.tags || []} />
         </div>
-        <div className="lg:col-span-5 grid gap-[50px]">
-          <Image
-            src={data?.data.image || img1}
-            alt="product img"
-            width={400}
-            height={200}
-            className="w-full h-full"
-          />
+      <div className="lg:col-span-5 grid gap-[50px]">
+  {isLoading ? (
+    <p className="text-center text-[#35356A] text-lg">Loading...</p>
+  ) : (
+    <Image
+      src={data?.data.image || img1}
+      alt="product img"
+      width={400}
+      height={200}
+      className="w-full h-full"
+    />
+  )}
 
-          <TermsBody />
-        </div>
+  <TermsBody />
+</div>
+
       </div>
     </div>
   );

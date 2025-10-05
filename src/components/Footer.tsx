@@ -19,10 +19,17 @@ function Footer() {
               روابط الموقع
             </h2>
             <div className="flex flex-col gap-[10px] *:text-[#999EB2]">
-             <Link href=""> <p>الرئيسيه</p></Link>
-              <Link href="/about"><p>عنا</p></Link>
+              <Link href="">
+                {" "}
+                <p>الرئيسيه</p>
+              </Link>
+              <Link href="/about">
+                <p>عنا</p>
+              </Link>
               <p>خدماتنا </p>
-              <Link href="contact-us"><p>تواصل معنا</p></Link>
+              <Link href="contact-us">
+                <p>تواصل معنا</p>
+              </Link>
             </div>
           </div>
           <div>
@@ -54,21 +61,21 @@ function Footer() {
           </p>
           <p>تابعنا</p>
           <div className="flex justify-center md:justify-start gap-[5px] md:gap-[15px] *:w-[48px] h-[48px] *:bg-white *:flex *:justify-center *:items-center *:rounded-[15px]">
-            <div>
+            <Link href="https://facebook.com" target="_blank">
               <FaFacebookF className="text-[#35356A] w-[20px] h-[20px]" />
-            </div>
-            <div>
+            </Link>
+            <Link href="https://telegram.org" target="_blank">
               <RiTelegram2Fill className="text-[#35356A] w-[20px] h-[20px]" />
-            </div>
-            <div>
+            </Link>
+            <Link href="https://linkedin.com" target="_blank">
               <FaLinkedinIn className="text-[#35356A] w-[20px] h-[20px]" />
-            </div>
-            <div>
+            </Link>
+            <Link href="https://twitter.com" target="_blank">
               <FaTwitter className="text-[#35356A] w-[20px] h-[20px]" />
-            </div>
-            <div>
+            </Link>
+            <Link href="https://instagram.com" target="_blank">
               <FaInstagram className="text-[#35356A] w-[20px] h-[20px]" />
-            </div>
+            </Link>
           </div>
         </div>
       </div>

@@ -22,10 +22,17 @@ function Nav() {
   return (
     <nav className=" px-2 md:px-10 lg:container-apply py-[15px] flex items-center justify-between fixed w-full bg-white z-10 " >
       <div className="flex gap-2 md:gap-5 items-center ">
-        <Button className="bg-secondary text-white hover:bg-[#283990c6] !h-auto transition cursor-pointer rounded-[10px] !px-2 !py-3  md:!px-4 md:!py-4 text-[12px] md:text-[16px] font-semibold ">
-          تواصل معنا
-          <FaWhatsapp className="md:!w-[25px] md:!h-[25px] !w-[15px] !h-[15px]" />
-        </Button>
+     <a 
+  href="https://wa.me/201234567890" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <Button className="bg-secondary text-white hover:bg-[#283990c6] !h-auto transition cursor-pointer rounded-[10px] !px-2 !py-3  md:!px-4 md:!py-4 text-[12px] md:text-[16px] font-semibold ">
+    تواصل معنا
+    <FaWhatsapp className="md:!w-[25px] md:!h-[25px] !w-[15px] !h-[15px]" />
+  </Button>
+</a>
+
         <Button className="text-[#35356A] bg-[#F9F9FC] hover:bg-[#f9f9fccb] transition cursor-pointer font-semibold rounded-[10px] text-[12px] md:text-[16px] !px-2 !py-3  md:!px-4 md:!py-4 !h-auto">
           العربيه
           <TbWorld className="md:!w-[25px] md:!h-[25px] !w-[15px] !h-[15px]" />

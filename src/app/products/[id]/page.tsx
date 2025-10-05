@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa6";
 import img1 from "@/assets/noon.png";
 import img2 from "@/assets/amazon.png";
@@ -15,7 +15,6 @@ import { notFound, useParams } from "next/navigation";
 import { useOneProduct } from "@/lib/hooks";
 
 function Page() {
-  const [mainImage, setMainImg] = useState(img3);
   const params = useParams<{ id: string }>();
   const id = params.id;
 
@@ -103,7 +102,7 @@ function Page() {
                   width={400}
                   height={300}
                   className="w-full min-h-[100px] "
-                  onClick={() => setMainImg(img)}
+                
                 />
               ))}
             </div>

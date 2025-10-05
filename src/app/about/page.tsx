@@ -5,7 +5,6 @@ import heroimg from "@/assets/heroImg.jpg";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import ContactUs from "@/components/ContactUs";
-import Footer from "@/components/Footer";
 import Faqs from "@/components/Faqs";
 import WhyUS from "@/components/WhyUS";
 import SectionHeader from "@/components/SectionHeader";
@@ -44,7 +43,7 @@ function About() {
             </div>
             <div className="">
               <h2 className="font-bold text-[30px] capitalize text-[#35356A] text-right">
-                +7 y
+                +7y
               </h2>
               <p className="text-[#999EB2] font-medium text-[18px]" dir="rtl">
                 خبره في المجال
@@ -56,7 +55,7 @@ function About() {
                 className="font-bold text-[30px] capitalize text-[#35356A] text-right"
                 dir="ltr"
               >
-                +10 k
+                +10k
               </h2>
               <p className="text-[#999EB2] font-medium text-[18px]">
                 مشتركون معنا
@@ -97,22 +96,21 @@ function About() {
       </div>
       <div className="bg-[#F9F9FC]">
         <SectionHeader
-        title="لماذا تختار محتوانا ؟ "
-        subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
-      />
-     <Services />
+          title="لماذا تختار محتوانا ؟ "
+          subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+        />
+        <Services />
       </div>
       <div>
-         <SectionHeader
-        title="لماذا تختار محتوانا ؟ "
-        subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
-      />
-      <AboutPageWhyUs />
+        <SectionHeader
+          title="لماذا تختار محتوانا ؟ "
+          subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+        />
+        <AboutPageWhyUs />
       </div>
       <WhyUS />
       <Faqs />
       <ContactUs />
-      <Footer />
     </>
   );
 }

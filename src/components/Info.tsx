@@ -11,7 +11,7 @@ function Info() {
           <p className='text-[#35356A] font-normal '>تواصل معنا عبر البريد</p>
           <p className='text-[#999EB2] text-[]'>support@Dieux.com</p>
         </div >
-          <div className='rounded-[15px] col-span-1 ml-auto w-[75px] h-[75px] flex justify-center items-center bg-gradient-to-br from-[#283A90] via-[#3d4ea41c] to-[#283A9000]'>
+          <div className='rounded-[15px] col-span-1 ml-auto w-[75px] h-[75px] flex justify-center items-center bg-[linear-gradient(131deg,rgba(40,58,144,0.20)_-66.81%,rgba(40,58,144,0)_37.19%)] border-[#F5F5F7] border'>
             <Image src={img1} alt='user img' width={30} height={30} className=' w-[30px] h-[30px]' />
           </div>
       </div>
@@ -20,7 +20,7 @@ function Info() {
           <p className='text-[#35356A] font-normal'>اتصل بنا في اي وقت</p>
           <p className='text-[#999EB2] text-[]'>+201025576136</p>
         </div>
-          <div className='rounded-[15px] w-[75px] ml-auto h-[75px] flex justify-center items-center bg-gradient-to-br from-[#283A90] via-[#3d4ea41c] to-[#283A9000]'>
+          <div className='rounded-[15px] w-[75px] ml-auto h-[75px] flex justify-center items-center bg-[linear-gradient(131deg,rgba(40,58,144,0.20)_-66.81%,rgba(40,58,144,0)_37.19%)] border-[#F5F5F7] border'>
             <Image src={img2} alt='user img' width={30} height={30} className='w-[30px] h-[30px]' />
           </div>
       </div>
@@ -29,7 +29,7 @@ function Info() {
           <p className='text-[#35356A] font-normal'>العنوان الخاص بنا</p>
           <p className='text-[#999EB2] text-[]'> The Greek Campus - Dieux</p>
         </div>
-          <div className='rounded-[15px] w-[75px] ml-auto h-[75px] flex justify-center items-center bg-gradient-to-br from-[#283A90] via-[#3d4ea41c] to-[#283A9000]'>
+          <div className='rounded-[15px] w-[75px] ml-auto h-[75px] flex justify-center items-center bg-[linear-gradient(131deg,rgba(40,58,144,0.20)_-66.81%,rgba(40,58,144,0)_37.19%)] border-[#F5F5F7] border'>
             <Image src={img3} alt='user img' width={30} height={30} className='w-[30px] h-[30px]' />
           </div>
       </div>

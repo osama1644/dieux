@@ -6,6 +6,7 @@ import Faqs from "@/components/Faqs";
 import Hero from "@/components/Hero";
 import HomePageProducts from "@/components/HomePageProducts";
 import ServicesPage from "@/components/ServicesPage";
+import SocialLinks from "@/components/SocialLinks";
 import Sponsers from "@/components/Sponsers";
 import Testimonials from "@/components/Testimonials";
 import WhyUS from "@/components/WhyUS";
@@ -24,6 +25,7 @@ export default function Home() {
       <Blogs />
       <Faqs />
       <ContactUs />
+      <SocialLinks />
 
     </>
   );

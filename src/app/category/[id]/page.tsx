@@ -24,11 +24,11 @@ function Page() {
   const{data,isLoading,isError} =useGetProductByCategory(id)
   if(data){
     console.log(data)
-    console.log((data.data[0].title).split(" ").slice(0,10).join(" "))
+    // console.log((data.data[0].title).split(" ").slice(0,10).join(" "))
   }
   return (
-    <div>
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[20px] container-apply">
+    <div dir='rtl'>
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[20px] container-apply py-[100px]">
         {isLoading && (
           <div className="flex text-center">
             <p>loading products from server</p>
@@ -39,7 +39,7 @@ function Page() {
             <p className=" text-red-500">cant get your products</p>
           </div>
         )}
-        {data?.data.map((prod) => (
+        {data?.data?.map((prod) => (
           <div
             key={prod.id}
             className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
@@ -49,8 +49,8 @@ function Page() {
               src={prod.main_image}
               alt="blog img"
               width={300}
-              height={300}
-              className="w-full h-[290px]"
+              height={200}
+              className="w-full h-[200px] object-contain"
             />
             <div className="flex gap-2 items-center">
               <Image src={img2} alt="clock logo" width={25} height={25} />
@@ -59,12 +59,12 @@ function Page() {
               </p>
             </div>
             <div className="spac-y-[12px]">
-              <p className="text-[#35356A] text-[20px]">{prod.subTitle}</p>
-              <p className="text-[#999EB2] text-[18px]">{prod.title.split(" ").slice(0,10).join(" ")}...</p>
+              <p className="text-[#35356A] text-[20px]">{prod?.subTitle}</p>
+              <p className="text-[#999EB2] text-[18px] line-clamp-2" >{prod?.title}...</p>
             </div>
             <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
               {prod.attributes.slice(0, 3).map((attr) => (
-                <p key={attr}>{attr}</p>
+                <p key={attr} className='text-center'>{attr}</p>
               ))}
               <p className="text-[#35356A] bg-[#F5F5F7] rounded-[10px] p-[5px_10px]">
                 +{prod.attributes.slice(3).length}

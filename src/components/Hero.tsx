@@ -15,23 +15,23 @@ function Hero() {
           أناقة صممناها من أجلك.! <br />
           تكتمل بها هوية مطبخك وأسلوب حياتك
         </h1>
-        <p className=" text-[#7F41FF] text-[20px]  text-center">ديوكس .. اختيارك الأول والأفضل</p>
+        <p className=" text-[#35356A] text-[20px]  text-center">ديوكس .. اختيارك الأول والأفضل</p>
         <div className="flex gap-[10px] md:gap-[20px] lg:gap-[60px]  justify-center *:flex *:justify-center *:flex-col *:items-center" dir="ltr">
           <div>
             <h2 className=" text-[16px] sm:text-[30px] lg:text-[40px] text-[#35356A] font-bold">+300</h2>
-            <p className="text-[#7F41FF] text-center text-[14px] md:text-[16px]">تخصص موجوده</p>
+            <p className="text-[#35356A] text-center text-[14px] md:text-[16px]">تخصص موجوده</p>
           </div>
           <div>
             <h2 className=" text-[16px] sm:text-[30px] lg:text-[40px] text-[#35356A] font-bold">+1500</h2>
-            <p className="text-[#7F41FF] text-center text-[14px] md:text-[16px]">كليات موجوده</p>
+            <p className="text-[#35356A] text-center text-[14px] md:text-[16px]">كليات موجوده</p>
           </div>
           <div>
             <h2 className=" text-[16px] sm:text-[30px] lg:text-[40px] text-[#35356A] font-bold">+70</h2>
-            <p className="text-[#7F41FF] text-center text-[14px] md:text-[16px]">جامعات موجوده</p>
+            <p className="text-[#35356A] text-center text-[14px] md:text-[16px]">جامعات موجوده</p>
           </div>
           <div>
             <h2 className=" text-[16px] sm:text-[30px] lg:text-[40px] text-[#35356A] font-bold">+100k</h2>
-            <p className="text-[#7F41FF] text-center text-[14px] md:text-[16px]">طلاب موجوده</p>
+            <p className="text-[#35356A] text-center text-[14px] md:text-[16px]">طلاب موجوده</p>
           </div>
         </div>
       </div>

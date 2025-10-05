@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useMemo, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import img1 from "@/assets/homeProductImage.png";
 import img2 from "@/assets/ClockCircle.png";
 import { Button } from "@/components/ui/button";
 import PaginationComp from "@/components/PaginationComp";
@@ -65,7 +64,7 @@ function Page() {
               currCategory === link.value
                 ? "bg-[#35356A] text-white"
                 : "bg-[#F5F5F7] text-[#35356A]"
-            }`}
+            } cursor-pointer`}
             onClick={() => setCurrCategory(link.value)}
           >
             {link.label}
@@ -73,6 +72,14 @@ function Page() {
         ))}
       </div>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[30px]">
+         {isLoading && (
+        <p className="text-center text-[#35356A] text-lg my-10">جاري التحميل...</p>
+      )}
+
+      
+      {isError && (
+        <p className="text-center text-red-500 text-lg my-10">حصل خطأ في تحميل البيانات</p>
+      )}
         {filteredProducts.map((blog) => (
           <div
             key={blog.id}
@@ -94,8 +101,8 @@ function Page() {
               <p className="text-[#35356A] text-[20px] min-h-[60px] flex items-center ">
                 {blog.title}
               </p>
-              <p className="text-[#999EB2] text-[18px]">
-                {blog.description.replace(/<[^>]+>/g, "").trim().split(" ").slice(0,10).join(" ")}...
+              <p className="text-[#999EB2] text-[18px] line-clamp-2">
+                {blog.description.replace(/<[^>]+>/g, "").trim()}...
               </p>
             </div>
             <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">

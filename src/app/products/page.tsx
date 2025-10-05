@@ -14,13 +14,8 @@ import { useProducts, useSearch } from "@/lib/hooks";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ar";
-import { searchAll } from "@/api/api";
 dayjs.extend(relativeTime);
 dayjs.locale("ar");
-function formatRelativeTime(isoDate: string) {
-  const fixedIso = isoDate.slice(0, 23);
-  return dayjs(fixedIso).fromNow();
-}
 
 
 const links = [
@@ -29,16 +24,7 @@ const links = [
   { label: "عنايه بالبشره", value: "care" },
   { label: "منتجات طبيعيه", value: "natural" },
 ];
-// export async function searchAll(query: string) {
-//   try {
-//     const res = await axios.get(`https://api.dieuxeg.com/api/search`, {
-//       params: { q: query }, 
-//     });
-//     return res.data;
-//   } catch {
-//     throw new Error("Failed to search");
-//   }
-// }
+
 
 function Boxes() {
   const { data, isLoading, isError } = useProducts();
@@ -76,7 +62,7 @@ const items = useMemo(() => {
 }, [thedata, filteredProducts]);
 
   return (
-    <div className="container-apply pt-[100px]">
+    <div className="container-apply py-[100px]">
       <SectionHeader
         title="منتجات ديوكسا"
         subtitle="استعدي لإضافة لمسة ساحرة الى بيتك ف لا مكان مثل البيت"
@@ -118,12 +104,12 @@ const items = useMemo(() => {
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[20px]" dir="rtl">
         {isLoading && (
           <div className="flex text-center">
-            <p>loading products from server</p>
+            <p>جاري تحميل المنتجات</p>
           </div>
         )}
         {isError && (
           <div className="flex text-center">
-            <p className=" text-red-500">cant get your products</p>
+            <p className=" text-red-500" >خطا في تحميل المنتجات</p>
           </div>
         )}
 
@@ -149,7 +135,7 @@ const items = useMemo(() => {
             </div>
             <div className="spac-y-[12px]">
               <p className="text-[#35356A] text-[20px] min-h-[60px]">{prod.subTitle}</p>
-              <p className="text-[#999EB2] text-[18px]">{prod.title.split(" ").slice(0,10).join(" ")}...</p>
+              <p className="text-[#999EB2] text-[18px] line-clamp-2">{prod.title}</p>
             </div>
             <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
               

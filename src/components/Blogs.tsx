@@ -1,14 +1,13 @@
 "use client"
 import React from "react";
 import SectionHeader from "./SectionHeader";
-import img1 from "@/assets/blogImg.png"
 import img2 from "@/assets/ClockCircle.png"
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { useBlogs } from "@/lib/hooks";
 import Link from "next/link";
 function Blogs() {
-  const {data,isError,isLoading} = useBlogs()
+  const {data} = useBlogs()
 
   return (
     <div className=" container-apply">
@@ -17,7 +16,7 @@ function Blogs() {
         subtitle="Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt."
       />
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[30px]">
-          {data?.data.map((blog, i) => (
+          {data?.data.map((blog) => (
           <div
             key={blog.id}
             className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
@@ -38,8 +37,8 @@ function Blogs() {
               <p className="text-[#35356A] text-[20px] min-h-[60px] flex items-center ">
                 {blog.title}
               </p>
-              <p className="text-[#999EB2] text-[18px]">
-                {blog.description.replace(/<[^>]+>/g, "").trim().split(" ").slice(0,10).join(" ")}...
+              <p className="text-[#999EB2] text-[18px] line-clamp-2git ">
+                {blog.description.replace(/<[^>]+>/g, "").trim()}...
               </p>
             </div>
             <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">

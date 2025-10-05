@@ -16,7 +16,7 @@ function WhyUS() {
       <div className=" container-apply grid gap-5 xl:gap-0 xl:grid-cols-5">
         <div className="grid lg:grid-cols-2 gap-[30px] col-span-3">
               <div className="flex flex-col gap-[20px] text-[#35356A] text-2xl font-normal bg-white p-[30px] rounded-[15px]" dir="rtl">
-                    <div className=" w-[88px] h-[88px] rounded-2xl flex justify-center items-center bg-gradient-to-br from-[#283A90] via-[#3d4ea41c] to-[#283A9000]">
+                    <div className=" w-[88px] h-[88px] rounded-2xl flex justify-center items-center bg-[linear-gradient(131deg,rgba(40,58,144,0.20)_-66.81%,rgba(40,58,144,0)_37.19%)] border-[#F5F5F7] border">
                       {" "}
                       <Image src={img1} alt="service logo" width={36} height={36} className="bg-transparent" />
                     </div>
@@ -24,7 +24,7 @@ function WhyUS() {
                     <p className="text-[#999EB2] text-lg">نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.</p>
                   </div>
               <div className="flex flex-col gap-[20px] text-[#35356A] text-2xl font-normal bg-white p-[30px] rounded-[15px]" dir="rtl">
-                    <div className=" w-[88px] h-[88px] rounded-2xl flex justify-center items-center bg-gradient-to-br from-[#283A90] via-[#3d4ea41c] to-[#283A9000]">
+                    <div className=" w-[88px] h-[88px] rounded-2xl flex justify-center items-center bg-[linear-gradient(131deg,rgba(40,58,144,0.20)_-66.81%,rgba(40,58,144,0)_37.19%)] border-[#F5F5F7] border">
                       {" "}
                       <Image src={img1} alt="service logo" width={36} height={36} className="bg-transparent" />
                     </div>
@@ -32,7 +32,7 @@ function WhyUS() {
                     <p className="text-[#999EB2] text-lg">نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.</p>
                   </div>
               <div className="flex flex-col gap-[20px] text-[#35356A] text-2xl font-normal bg-white p-[30px] rounded-[15px]" dir="rtl">
-                    <div className=" w-[88px] h-[88px] rounded-2xl flex justify-center items-center bg-gradient-to-br from-[#283A90] via-[#3d4ea41c] to-[#283A9000]">
+                    <div className=" w-[88px] h-[88px] rounded-2xl flex justify-center items-center bg-[linear-gradient(131deg,rgba(40,58,144,0.20)_-66.81%,rgba(40,58,144,0)_37.19%)] border-[#F5F5F7] border">
                       {" "}
                       <Image src={img1} alt="service logo" width={36} height={36} className="bg-transparent" />
                     </div>
@@ -40,7 +40,7 @@ function WhyUS() {
                     <p className="text-[#999EB2] text-lg">نقدم محتوى تدريبيًا يغطي جميع الجوانب الأساسية والمتقدمة في مجال أمن المعلومات، مصمم خصيصًا لتلبية احتياجات المبتدئين والمحترفين.</p>
                   </div>
               <div className="flex flex-col gap-[20px] text-[#35356A] text-2xl font-normal bg-white p-[30px] rounded-[15px]" dir="rtl">
-                    <div className=" w-[88px] h-[88px] rounded-2xl flex justify-center items-center bg-gradient-to-br from-[#283A90] via-[#3d4ea41c] to-[#283A9000]">
+                    <div className=" w-[88px] h-[88px] rounded-2xl flex justify-center items-center bg-[linear-gradient(131deg,rgba(40,58,144,0.20)_-66.81%,rgba(40,58,144,0)_37.19%)] border-[#F5F5F7] border">
                       {" "}
                       <Image src={img1} alt="service logo" width={36} height={36} className="bg-transparent" />
                     </div>

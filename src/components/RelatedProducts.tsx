@@ -65,7 +65,7 @@ function RelatedProducts() {
             </div>
             <div className="spac-y-[12px]">
               <p className="text-[#35356A] text-[20px] min-h-[60px]">{prod.subTitle}</p>
-              <p className="text-[#999EB2] text-[18px]">{prod.title.split(" ").slice(0,9).join(" ")}</p>
+              <p className="text-[#999EB2] text-[18px] line-clamp-2">{prod.title}</p>
             </div>
             <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
               {prod.attributes.slice(0, 3).map((attr) => (
