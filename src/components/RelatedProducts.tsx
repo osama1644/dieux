@@ -23,8 +23,8 @@ function RelatedProducts() {
   const { data, isError, isLoading } = useProducts();
 
   return (
-    <div className="container-apply py-[100px] bg-[#F9F9FC] mt-[30px]">
-      <header className="flex justify-center items-center flex-col mb-[32px]">
+    <div className="container-apply py-[100px] bg-[#F9F9FC] mt-[30px]" dir="rtl">
+      <header className="flex justify-center items-center flex-col mb-[32px]" >
         <div className="">
           <Image src={img1} width={50} height={50} alt="" />
         </div>
@@ -64,8 +64,8 @@ function RelatedProducts() {
               </p>
             </div>
             <div className="spac-y-[12px]">
-              <p className="text-[#35356A] text-[20px]">{prod.subTitle}</p>
-              <p className="text-[#999EB2] text-[18px]">{prod.title}</p>
+              <p className="text-[#35356A] text-[20px] min-h-[60px]">{prod.subTitle}</p>
+              <p className="text-[#999EB2] text-[18px]">{prod.title.split(" ").slice(0,9).join(" ")}</p>
             </div>
             <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
               {prod.attributes.slice(0, 3).map((attr) => (
@@ -77,7 +77,7 @@ function RelatedProducts() {
                 </p>
               )}
             </div>
-            <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
+            <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer mt-auto">
               <Link href={`/products/${prod.id}`}>عرض تفاصيل اكثر</Link>
             </Button>
           </div>

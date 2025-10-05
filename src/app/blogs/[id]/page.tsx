@@ -18,8 +18,8 @@ function Page() {
     notFound();
   }
   return (
-    <div className="container-apply">
-      <div className="grid lg:grid-cols-8 gap-[20px]">
+    <div className="container-apply pt-[100px]">
+      <div className="grid lg:grid-cols-8 gap-[20px]" >
         <div className="lg:col-span-3  ">
           <ProductInfo tags={data?.data.tags || []} />
         </div>

@@ -10,7 +10,7 @@ function Page() {
     const { data, error, isLoading, isError } = useBoxes()
   
   return (
-    <div className='container-apply'>
+    <div className='container-apply pt-[100px]'>
        <SectionHeader
         title="بوكسات ديوكسا"
         subtitle="استعدي لإضافة لمسة ساحرة الى بيتك ف لا مكان مثل البيت"

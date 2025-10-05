@@ -29,7 +29,7 @@ function Page() {
 
   return (
     <>
-      <div className="container-apply grid lg:grid-cols-8 gap-[20px]">
+      <div className="container-apply grid lg:grid-cols-8 gap-[20px] pt-[100px]">
         <div className="lg:col-span-3 p-[20px] border flex flex-col gap-[20px] rounded-[20px] ">
           <div className="flex justify-between items-center">
             <div className="flex gap-1 items-center">

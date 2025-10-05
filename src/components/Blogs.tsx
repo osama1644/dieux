@@ -39,7 +39,7 @@ function Blogs() {
                 {blog.title}
               </p>
               <p className="text-[#999EB2] text-[18px]">
-                {blog.description.replace(/<[^>]+>/g, "").trim()}
+                {blog.description.replace(/<[^>]+>/g, "").trim().split(" ").slice(0,10).join(" ")}...
               </p>
             </div>
             <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">

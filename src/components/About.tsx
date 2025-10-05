@@ -24,7 +24,7 @@ function About() {
               className="font-bold text-[30px] capitalize text-[#35356A] text-right"
               
             >
-              +7 y
+              +7y
             </h2>
             <p className="text-[#999EB2] font-medium text-[18px]" dir="rtl">
               خبره في المجال
@@ -35,7 +35,7 @@ function About() {
               className="font-bold text-[30px] capitalize text-[#35356A] text-right"
               dir="ltr"
             >
-              +10 k
+              +10k
             </h2>
             <p className="text-[#999EB2] font-medium text-[18px]">
               استشارة عن الجامعات
@@ -46,7 +46,7 @@ function About() {
               className="font-bold text-[30px] capitalize text-[#35356A] text-right"
               dir="ltr"
             >
-              +100 k
+              +100k
             </h2>
             <p className="text-[#999EB2] font-medium text-[18px]">
               مستفيد من خدمتنا

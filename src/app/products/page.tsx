@@ -76,7 +76,7 @@ const items = useMemo(() => {
 }, [thedata, filteredProducts]);
 
   return (
-    <div className="container-apply">
+    <div className="container-apply pt-[100px]">
       <SectionHeader
         title="منتجات ديوكسا"
         subtitle="استعدي لإضافة لمسة ساحرة الى بيتك ف لا مكان مثل البيت"
@@ -115,7 +115,7 @@ const items = useMemo(() => {
       </div>
 
       {/* grid for products */}
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[20px]">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[20px]" dir="rtl">
         {isLoading && (
           <div className="flex text-center">
             <p>loading products from server</p>
@@ -129,8 +129,10 @@ const items = useMemo(() => {
 
         {items.map((prod) => (
           <div
+          
             key={prod.id}
-            className="p-[25px] flex flex-col gap-[15px] border rounded-[10px]"
+            
+            className="p-[25px] flex flex-col gap-[15px] border rounded-[10px] "
             dir="rtl"
           >
             <Image
@@ -146,13 +148,13 @@ const items = useMemo(() => {
               </p>
             </div>
             <div className="spac-y-[12px]">
-              <p className="text-[#35356A] text-[20px]">{prod.subTitle}</p>
-              <p className="text-[#999EB2] text-[18px]">{prod.title}</p>
+              <p className="text-[#35356A] text-[20px] min-h-[60px]">{prod.subTitle}</p>
+              <p className="text-[#999EB2] text-[18px]">{prod.title.split(" ").slice(0,10).join(" ")}...</p>
             </div>
             <div className="flex *:text-[#35356A] gap-[10px] *:bg-[#F5F5F7] *:rounded-[10px] *:p-[5px_10px]">
               
             </div>
-            <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer">
+            <Button className="text-white bg-[#283A90] hover:bg-[#283990c8] transition cursor-pointer mt-auto">
               <Link href={`/products/${prod.id}`}>عرض تفاصيل اكثر</Link>
             </Button>
           </div>

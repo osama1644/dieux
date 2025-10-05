@@ -19,10 +19,10 @@ function Footer() {
               روابط الموقع
             </h2>
             <div className="flex flex-col gap-[10px] *:text-[#999EB2]">
-              <p>الرئيسيه</p>
-              <p>عنا</p>
+             <Link href=""> <p>الرئيسيه</p></Link>
+              <Link href="/about"><p>عنا</p></Link>
               <p>خدماتنا </p>
-              <p>تواصل معنا</p>
+              <Link href="contact-us"><p>تواصل معنا</p></Link>
             </div>
           </div>
           <div>

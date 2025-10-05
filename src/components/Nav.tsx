@@ -15,12 +15,13 @@ function Nav() {
   const navLinks = [
     { href: "/", label: "الرئيسية" },
     { href: "/about", label: "من نحن" },
+    { href: "category", label: "التصنيفات" },
     { href: "/products", label: "المنتجات" },
     { href: "/blogs", label: "مقالات" },
   ];
   return (
-    <nav className=" px-2 md:px-10 lg:container-apply py-[15px] flex items-center justify-between">
-      <div className="flex gap-2 md:gap-5 items-center">
+    <nav className=" px-2 md:px-10 lg:container-apply py-[15px] flex items-center justify-between fixed w-full bg-white z-10 " >
+      <div className="flex gap-2 md:gap-5 items-center ">
         <Button className="bg-secondary text-white hover:bg-[#283990c6] !h-auto transition cursor-pointer rounded-[10px] !px-2 !py-3  md:!px-4 md:!py-4 text-[12px] md:text-[16px] font-semibold ">
           تواصل معنا
           <FaWhatsapp className="md:!w-[25px] md:!h-[25px] !w-[15px] !h-[15px]" />
