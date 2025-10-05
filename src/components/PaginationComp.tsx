@@ -38,8 +38,8 @@ function PaginationComp() {
           </PaginationItem>
 
           {pagesToShow.map((page, index) => (
-            <>
-              <PaginationItem key={page} className={`${currPage === page ? "bg-[#283A90] text-white hover:bg-[#8f9ad0]" : "bg-[#F9F9FC]"} rounded-[8px]`}>
+            <React.Fragment key={page}>
+              <PaginationItem className={`${currPage === page ? "bg-[#283A90] text-white hover:bg-[#8f9ad0]" : "bg-[#F9F9FC]"} rounded-[8px]`}>
                 <PaginationLink
                   href="#"
                  
@@ -55,7 +55,7 @@ function PaginationComp() {
                   <PaginationEllipsis />
                 </PaginationItem>
               )}
-            </>
+            </React.Fragment>
           ))}
 
           <PaginationItem>
