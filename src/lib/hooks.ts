@@ -1,6 +1,6 @@
 // hooks/useApi.ts
-"use client"
-import { useQuery } from "@tanstack/react-query";
+"use client";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   getBoxes,
   getProducts,
@@ -9,8 +9,16 @@ import {
   getOneBlog,
   getProductsByCategory,
   searchAll,
+  submitContactForm,
 } from "@/api/api";
-import { Blogs, CategoriesResponse, OneBlog, OneProduct, ProductsResponse, SearchQuery } from "@/types";
+import {
+  Blogs,
+  CategoriesResponse,
+  OneBlog,
+  OneProduct,
+  ProductsResponse,
+  SearchQuery,
+} from "@/types";
 
 export const useBoxes = () => {
   return useQuery<CategoriesResponse>({
@@ -29,7 +37,6 @@ export const useOneProduct = (id: string) => {
   return useQuery<OneProduct>({
     queryKey: ["product", id],
     queryFn: () => getOneProduct(id),
-    
   });
 };
 
@@ -58,3 +65,9 @@ export const useSearch = (query: string) => {
     queryFn: () => searchAll(query),
   });
 };
+export const useSubmitContact = () => {
+  return useMutation({
+    mutationFn: submitContactForm,
+  });
+};
+

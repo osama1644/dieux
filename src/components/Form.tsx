@@ -4,42 +4,56 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import userImg from "@/assets/User.png";
-import phoneImg  from "@/assets/Phone.png";
-import emailImg  from "@/assets/email1.png";
+import phoneImg from "@/assets/Phone.png";
+import emailImg from "@/assets/email1.png";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/ui/textarea";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import { useSubmitContact } from "@/lib/hooks";
 
 const formSchema = z.object({
-  username: z.string().min(2, {
+  full_name: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
   email: z.string().email({
     message: "البريد الالكتروني غير صالح",
   }),
+  phone_number: z.string().min(8, {
+    message: "رقم الهاتف غير صالح",
+  }),
+  message: z.string().min(5, {
+    message: "الرسالة يجب أن تكون أطول",
+  }),
 });
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  console.log(values);
-}
-
 export function ProfileForm() {
+  const submitContact = useSubmitContact();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      full_name: "",
     },
   });
-
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    submitContact.mutate(values, {
+      onSuccess: (data) => {
+        console.log(data);
+      },
+      onError: (error) => {
+        console.log("فشل الارسال", error);
+      },
+    });
+    console.log(values);
+  }
   return (
     <Form {...form}>
       <form
@@ -48,22 +62,35 @@ export function ProfileForm() {
       >
         <div className="grid md:grid-cols-2 gap-[15px] items-center">
           <div className=" relative">
-            <Image
-              src={phoneImg}
-              alt="user image"
-              width={35}
-              height={35}
-              className=" absolute right-2 top-1/2 -translate-y-1/2"
-            />
-            <Input
-              dir="rtl"
-              placeholder="رقم الهاتف"
-              className="bg-[#F5F5F7] px-12 !h-auto py-[25px]"
+            <FormField
+              control={form.control}
+              name="phone_number"
+              render={({ field }) => (
+                <FormItem dir="rtl">
+                  <FormControl>
+                    <div className="relative">
+                      <Image
+                        src={phoneImg}
+                        alt="phone image"
+                        width={35}
+                        height={35}
+                        className="absolute right-2 top-1/2 -translate-y-1/2"
+                      />
+                      <Input
+                        placeholder="رقم الهاتف"
+                        {...field}
+                        className="bg-[#F5F5F7] px-12 !h-auto py-[25px]"
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </div>
           <FormField
             control={form.control}
-            name="username"
+            name="full_name"
             render={({ field }) => (
               <FormItem dir="rtl">
                 {/* <FormLabel>Username</FormLabel> */}
@@ -88,25 +115,52 @@ export function ProfileForm() {
             )}
           />
         </div>
-           <FormField
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem dir="rtl">
+              {/* <FormLabel>Username</FormLabel> */}
+              <FormControl>
+                <div className="relative ">
+                  <Image
+                    src={emailImg}
+                    alt="user image"
+                    width={35}
+                    height={35}
+                    className=" absolute right-2 top-1/2 -translate-y-1/2"
+                  />
+                  <Input
+                    placeholder="الايميل الخاص بك"
+                    {...field}
+                    className="bg-[#F5F5F7] px-12 !h-auto py-[25px]"
+                  />
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className=" relative">
+          <FormField
             control={form.control}
-            name="email"
+            name="message"
             render={({ field }) => (
               <FormItem dir="rtl">
-                {/* <FormLabel>Username</FormLabel> */}
                 <FormControl>
-                  <div className="relative ">
+                  <div className="relative">
                     <Image
                       src={emailImg}
-                      alt="user image"
+                      alt="message image"
                       width={35}
                       height={35}
-                      className=" absolute right-2 top-1/2 -translate-y-1/2"
+                      className="absolute right-2 top-4"
                     />
-                    <Input
-                      placeholder="الايميل الخاص بك"
+                    <Textarea
+                      placeholder="الرسالة الخاصة بك"
                       {...field}
-                      className="bg-[#F5F5F7] px-12 !h-auto py-[25px]"
+                      dir="rtl"
+                      className="bg-[#F5F5F7] px-12 py-[25px] !h-[295px]"
                     />
                   </div>
                 </FormControl>
@@ -114,20 +168,21 @@ export function ProfileForm() {
               </FormItem>
             )}
           />
-         <div className=" relative">
-           <Image
-                      src={emailImg}
-                      alt="user image"
-                      width={35}
-                      height={35}
-                      className=" absolute right-2 top-4 "
-                    />
-           <Textarea placeholder="الرساله الخاصه بك" dir="rtl" className="bg-[#F5F5F7]  px-12  py-[25px] !h-[295px]"/>
-         </div>
+        </div>
 
         <div dir="rtl" className=" flex flex-col md:flex-row  gap-[20px]">
-          <Button type="submit" className="bg-[#283A90] text-white w-ful md:w-[180px] lg:w-[250px]">تواصل معنا</Button>
-          <Button variant="outline" className="  text-[#35356A] w-full md:w-[120px] lg:w-[150px]">الغاء</Button>
+          <Button
+            type="submit"
+            className="bg-[#283A90] text-white w-ful md:w-[180px] lg:w-[250px]"
+          >
+            تواصل معنا
+          </Button>
+          <Button
+            variant="outline"
+            className="  text-[#35356A] w-full md:w-[120px] lg:w-[150px]"
+          >
+            الغاء
+          </Button>
         </div>
       </form>
     </Form>

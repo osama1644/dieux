@@ -124,3 +124,9 @@ export interface SearchQuery {
   blogs:SearchedBlog[],
   products:SearchedProd[]
 }
+export type ContactFormData = {
+  full_name: string;
+  phone_number: string;
+  email: string;
+  message: string;
+};

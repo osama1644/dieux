@@ -5,10 +5,10 @@ import img2 from "@/assets/Union.png"
 function AboutPageWhyUs() {
   return (
     <div className='container-apply mb-[100px]'>
-      <div className='grid md:grid-cols-2 gap-2 mb-[30px] items-center'>
-        <Image width={800} height={390} src={img1}  alt='hero image' className='w-full'/>
+      <div className='grid md:grid-cols-2 gap-[30px] mb-[30px] '>
+        <div><Image width={800} height={390} src={img1}  alt='hero image' className='w-full'/></div>
         <div dir='rtl' className='flex flex-col gap-[30px] '>
-          <h2 className='text-[#35356A] text-xl md:text-2xl lg:text-[40px] font-normal'>أبدأ رحلة التعلم الخاصة بك الان! أبدأ رحلة التعلم الخاصة بك الان!</h2>
+          <p className='text-[#35356A] text-xl md:text-2xl lg:text-[35px] font-normal tracking-[-0.8px] text-right'>أبدأ رحلة التعلم الخاصة بك الان! أبدأ رحلة التعلم الخاصة بك الان!</p>
           <p className='text-[#999EB2] text-[14px] lg:text-lg font-normal'>يوفر الكورس محتوى شامل يغطي مختلف جوانب البرمجة بشكل شامل، مما يساعد الطلاب على فهم المفاهيم الأساسية والمتقدمة في عالم البرمجة.يوفر الكورس محتوى شامل يغطي مختلف جوانب البرمجة بشكل شامل، مما يساعد الطلاب على فهم المفاهيم الأساسية والمتقدمة في عالم البرمجة.</p>
         </div>
         </div>

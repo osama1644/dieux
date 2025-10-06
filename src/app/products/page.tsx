@@ -3,7 +3,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import img2 from "@/assets/ClockCircle.png";
 import { CiSearch } from "react-icons/ci";
 import { Button } from "@/components/ui/button";
@@ -35,6 +35,7 @@ function Boxes() {
     console.log(thedata.data)
   }
 
+ 
   const filteredProducts = useMemo(() => {
     if (!data?.data) return [];
 
@@ -51,13 +52,10 @@ function Boxes() {
     }
   }, [data, currCategory]);
 
-  // بعد ال states
 const items = useMemo(() => {
   if (thedata.data) {
-    // لو جاي من search api
     return thedata.data.products || [];
   }
-  // fallback للفلترة القديمة
   return filteredProducts;
 }, [thedata, filteredProducts]);
 

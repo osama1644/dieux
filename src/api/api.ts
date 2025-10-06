@@ -1,8 +1,12 @@
+import { ContactFormData } from "@/types";
 import axios from "axios";
 
 export async function getBoxes() {
   try {
-    const res = await axios.get("https://api.dieuxeg.com/api/categories/with-count");
+    const res = await axios.get(
+      "https://api.dieuxeg.com/api/categories/with-count"
+    );
+    console.log(res);
     return res.data;
   } catch {
     throw new Error("Failed to fetch categories");
@@ -46,7 +50,9 @@ export async function getOneBlog(id: string) {
 }
 export async function getProductsByCategory(id: string) {
   try {
-    const res = await axios.get(`https://api.dieuxeg.com/api/categories/${id}/products`);
+    const res = await axios.get(
+      `https://api.dieuxeg.com/api/categories/${id}/products`
+    );
     return res.data;
   } catch {
     throw new Error("Failed to get the blog");
@@ -56,11 +62,22 @@ export async function getProductsByCategory(id: string) {
 export async function searchAll(query: string) {
   try {
     const res = await axios.get(`https://api.dieuxeg.com/api/search`, {
-      params: { q: query }, 
+      params: { q: query },
     });
     return res.data;
   } catch {
     throw new Error("Failed to search");
+  }
+}
+export async function submitContactForm(data:ContactFormData) {
+  try {
+    const res = await axios.post("https://api.dieuxeg.com/api/contact", data, {
+      headers: { "Content-Type": "application/json" },
+    });
+    console.log(res)
+    return res.data;
+  } catch {
+    throw new Error("Failed to send data");
   }
 }
 
